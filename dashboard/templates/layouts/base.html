@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>
+        Pi Dashboard - {% block title %}{% endblock %}
+    </title>
+
+    <meta name="description" content="Raspberry Pi Dashboard">
+
+    <link rel="icon" type="image/png" href="/static/assets/img/favicon.ico"/>
+
+    <link rel="stylesheet" href="/static/assets/css/bulma.min.css"/>
+
+</head>
+<body>
+
+    {% block content %}{% endblock content %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>
