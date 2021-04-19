@@ -2,27 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <title>
-        Pi Dashboard - {% block title %}{% endblock %}
-    </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<title>
+		Pi Dashboard - {% block title %}{% endblock %}
+	</title>
 
-    <meta name="description" content="Raspberry Pi Dashboard">
+	<meta name="description" content="Raspberry Pi Dashboard">
 
-    <link rel="icon" type="image/png" href="/static/assets/img/favicon.ico"/>
+	<link rel="icon" type="image/png" href="/static/assets/img/favicon.ico"/>
 
-    <link rel="stylesheet" href="/static/assets/css/bulma.min.css"/>
+	<link rel="stylesheet" href="/static/assets/css/bulma.light.css"/>
 
 </head>
 <body>
 
-    {% block content %}{% endblock content %}
+	<body>
+		<section class="hero is-primary is-fullheight">
+	
+			<div class="hero-head">
+				<nav class="navbar">
+					<div class="container">
+	
+						<div id="navbarMenuHeroA" class="navbar-menu">
+							<div class="navbar-end">
+								<a href="{{ url_for('main.index') }}" class="navbar-item">
+									Home
+								</a>
+								{% if not current_user.is_authenticated %}
+								<a href="{{ url_for('auth.login') }}" class="navbar-item">
+									Login
+								</a>
+								{% endif %}
+								{% if current_user.is_authenticated %}
+								<a href="{{ url_for('auth.logout') }}" class="navbar-item">
+									Logout
+								</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+	
+			<div class="hero-body">
+				<div class="container has-text-centered">
+				   {% block content %}
+				   {% endblock %}
+				</div>
+			</div>
+		</section>
+	</body>
 
-    <!-- Specific Page JS goes HERE  -->
-    {% block javascripts %}{% endblock javascripts %}
+	<!-- Specific Page JS goes HERE  -->
+	{% block javascripts %}{% endblock javascripts %}
 
 </body>
 </html>

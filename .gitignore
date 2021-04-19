@@ -2,3 +2,7 @@
 venv
 *.py[cod]
 __pycache__/
+
+# Environment variable test script - should never be tracked!
+run.sh
+*/db.sqlite

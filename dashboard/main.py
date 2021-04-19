@@ -5,12 +5,16 @@ Date: 2021 - present
 Licence: MIT
 """
 
-from dashboard import app
-from flask import render_template
+# from dashboard import app
+
+from flask import Blueprint, render_template
+from flask_login import login_required, current_user
+
+main = Blueprint('main', __name__)
 
 # Home page
-@app.route('/')
-def home():
+@main.route('/')
+def index():
 	return render_template('index.html')
 
-# Login page
+# Profile page

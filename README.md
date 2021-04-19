@@ -8,3 +8,9 @@ Simple Raspberry Pi Dashboard Based on Flask and Bulma CSS
 
 - Flask-login tutorial used as the basis for this dashboard:
     https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
+
+## Expected Environment Variables
+
+- `FLASK_SECRET_KEY` - used to securely sign session cookies. Should be a long random string of bytes.
+
+- 
