@@ -14,7 +14,7 @@ main = Blueprint('main', __name__)
 
 # Home page
 @main.route('/')
+@login_required
 def index():
 	return render_template('index.html')
 
-# Profile page

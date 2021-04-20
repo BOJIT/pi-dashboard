@@ -7,8 +7,13 @@ Licence: MIT
 
 from os import environ
 from flask import Flask
+from werkzeug.security import generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager 
+from flask_login import LoginManager
+
+# Default credentials (created if no login exists). User cannot be deleted
+default_username = 'admin'
+default_password = 'pi_dashboard'
 
 # Create app and corresponding database
 db = SQLAlchemy()
@@ -31,12 +36,24 @@ from .models import User
 # User login loader (Flask-login)
 @login_manager.user_loader
 def load_user(user_id):
-	# since the user_id is just the primary key of our user table, use it in the query for the user
 	return User.query.get(int(user_id))
 
 # Create database if it doesn't exist
 with app.app_context():
 	db.create_all()
+
+	# Create default admin user if one doesn't exist
+	user = User.query.filter_by(username=default_username).first()
+
+	if not user:
+		new_user = User(username=default_username,
+		                password=generate_password_hash(default_password,
+		                method='sha256'),
+		                admin=True)
+
+		# add the new user to the database
+		db.session.add(new_user)
+		db.session.commit()
 
 # Main blueprint
 from .main import main as main_blueprint
