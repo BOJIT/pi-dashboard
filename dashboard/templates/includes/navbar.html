@@ -54,6 +54,11 @@
 					<strong>Logout</strong>
 				</a>
 				{% endif %}
+				{% if current_user.is_admin %}
+				<a href="{{ url_for('auth.logout') }}" class="button is-light">
+					<strong>Test</strong>
+				</a>
+				{% endif %}
 			</div>
 		</div>
 		</div>

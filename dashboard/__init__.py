@@ -49,7 +49,7 @@ with app.app_context():
 		new_user = User(username=default_username,
 		                password=generate_password_hash(default_password,
 		                method='sha256'),
-		                admin=True)
+		                is_admin=False)
 
 		# add the new user to the database
 		db.session.add(new_user)
